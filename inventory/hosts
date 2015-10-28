@@ -1,5 +1,5 @@
 [kontena.cloudgeni.us]
 kontena.cloudgeni.us ansible_ssh_host=kontena.cloudgeni.us ansible_ssh_user=cloudgenius ansible_ssh_private_key_file=~/.ssh/edxcloudgenius.pem
 
-#[vagrant]
-#vagrant ansible_ssh_host=192.168.33.10 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/Volumes/500/btsync/gitrepos/vagrant/vagrant-local/.vagrant/machines/default/virtualbox/private_key
+[vagrant]
+vagrant ansible_ssh_host=192.168.33.10 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/Volumes/500/btsync/gitrepos/vagrant/vagrant-local/.vagrant/machines/default/virtualbox/private_key

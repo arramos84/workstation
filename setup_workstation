@@ -1,6 +1,7 @@
 rm -rf roles
 ansible-galaxy install zzet.rbenv
 ansible-galaxy install angstwad.docker_ubuntu
+ansible-galaxy install yaegashi.blockinfile
 
 ansible-playbook playbooks/1.\ install_dependencies_for_linuxbrew.yml
 ansible-playbook playbooks/2.\ install_linuxbrew.yml
