@@ -1,0 +1,27 @@
+---
+
+- name: configure the kontenas
+  hosts: all
+  #remote_user: root
+  sudo: yes
+  gather_facts: False
+
+  #vars:
+  #  remote_dir: /root/hold
+  #  backup_dir: "{{ remote_dir }}/{{ timestamp }}"
+  #  backup_file: "{{ timestamp }}.tar.gz"
+  #  backup_path: "{{ remote_dir }}/{{ backup_file }}"
+  #  backup_file_sql: dump.sql
+  #  local_dir: hold
+
+# Pre-Task
+  #pre_tasks:
+  #  - set_fact: timevar="{{ lookup('pipe','date +%Y%m%d-%H%M > timestamp.txt') }}"
+  #  - set_fact: timestamp="{{ lookup('file','timestamp.txt') }}"
+
+  tasks:
+    - name: install packages
+      apt: name={{ item }} update_cache=yes state=latest
+      with_items:
+        - htop
+        - git

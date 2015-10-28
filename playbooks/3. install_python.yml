@@ -1,0 +1,10 @@
+---
+
+- name: install python using brew
+  hosts: all
+    
+  tasks:
+    - homebrew: update_homebrew=yes upgrade_all=yes path="{{ home }}"/.linuxbrew/bin/
+    - homebrew: name={{ item }} state=present path="{{ home }}"/.linuxbrew/bin/
+      with_items:
+        - python

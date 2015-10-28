@@ -1,0 +1,10 @@
+---
+
+- name: install linuxbrew
+  hosts: all
+
+  tasks:
+    - lineinfile: dest="{{ home }}"/.bashrc line="export PATH=$HOME/.linuxbrew/bin:$PATH"
+    - lineinfile: dest="{{ home }}"/.bashrc line="export MANPATH=$HOME/.linuxbrew/share/man:$MANPATH"
+    - lineinfile: dest="{{ home }}"/.bashrc line="export INFOPATH=$HOME/.linuxbrew/share/info:$INFOPATH"
+    - git: repo=https://github.com/Homebrew/linuxbrew.git dest=~/.linuxbrew

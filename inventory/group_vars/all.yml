@@ -1,0 +1,23 @@
+---
+
+aliases: aliases
+hostname_tld: cloudgeni.us
+locale_list:
+  - en_US.utf8
+mail_domains: []
+monitoring_server: nagios.cloudgeni.us
+#required by the check_mk agent role
+#monitoring_server_ip: 192.168.1.1
+munin_port: 4949
+nagios_additional_hosts:
+  - farm.cloudgeni.us
+sysadmin_email: 'team@cloudgeni.us'
+users_extra: []
+sudo_default:
+  - "%sudo"
+  - "%sysadmin"
+sudo_extras: []
+sudo_extra_lines: []
+postgres_port: 5432
+solr_port: 8983
+sshd_PasswordAuthentication: No

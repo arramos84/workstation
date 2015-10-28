@@ -1,0 +1,22 @@
+---
+
+- name: install dependencies for linuxbrew
+  hosts: all
+  sudo: yes
+  
+  tasks:
+    - name: install dependencies for linuxbrew
+      apt: name={{ item }} update_cache=yes state=latest
+      with_items:
+        - htop
+        - git
+        - build-essential
+        - curl
+        - m4
+        - ruby
+        - texinfo
+        - libbz2-dev
+        - libcurl4-openssl-dev
+        - libexpat-dev
+        - libncurses-dev
+        - zlib1g-dev
