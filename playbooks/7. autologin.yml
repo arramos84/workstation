@@ -12,7 +12,8 @@
     - lineinfile: dest=/etc/lightdm/lightdm.conf regexp="^autologin-user=vagrant" state=absent
     - lineinfile: dest=/etc/lightdm/lightdm.conf line="autologin-user=cloudgenius"
 
-    - apt: upgrade=dist
+    - name: upgrade
+      apt: upgrade=dist update_cache=yes
 
     - name: Check if packages need to be autoremoved
       command: apt-get --dry-run autoremove

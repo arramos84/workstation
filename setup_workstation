@@ -11,3 +11,4 @@ ansible-playbook playbooks/4.\ install_rbenv.yml
 ansible-playbook playbooks/5.\ install_docker.yml
 ansible-playbook playbooks/6.\ remove_cruft.yml
 ansible-playbook playbooks/7.\ autologin.yml
+ansible-playbook playbooks/8.\ disable_logout.yml  
