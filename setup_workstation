@@ -3,8 +3,11 @@ ansible-galaxy install zzet.rbenv
 ansible-galaxy install angstwad.docker_ubuntu
 ansible-galaxy install yaegashi.blockinfile
 
+ansible-playbook playbooks/0.\ create_user.yml
 ansible-playbook playbooks/1.\ install_dependencies_for_linuxbrew.yml
 ansible-playbook playbooks/2.\ install_linuxbrew.yml
 ansible-playbook playbooks/3.\ install_python.yml
 ansible-playbook playbooks/4.\ install_rbenv.yml
 ansible-playbook playbooks/5.\ install_docker.yml
+ansible-playbook playbooks/6.\ remove_cruft.yml
+ansible-playbook playbooks/7.\ autologin.yml

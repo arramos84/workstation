@@ -1,0 +1,13 @@
+---
+
+- name: autologin cloudgenius
+  hosts: all
+  sudo: yes
+  roles:
+    - yaegashi.blockinfile
+
+  tasks:
+    - lineinfile: dest=/etc/gdm/custom.conf regexp="^AutomaticLoginEnable=vagrant" state=absent
+    - lineinfile: dest=/etc/gdm/custom.conf line="AutomaticLoginEnable=cloudgenius"
+    - lineinfile: dest=/etc/lightdm/lightdm.conf regexp="^autologin-user=vagrant" state=absent
+    - lineinfile: dest=/etc/lightdm/lightdm.conf line="autologin-user=cloudgenius"
