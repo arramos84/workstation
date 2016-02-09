@@ -1,4 +1,6 @@
-[vagrant]
-#vagrant ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_ssh_user=vagrant ansible_ssh_private_key_file=/Users/cloudgenius/boxcutter/.vagrant/machines/default/virtualbox/private_key
+[vagrantboxes]
+vagrant ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
 
-kontena.cloudgeni.us ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222 ansible_ssh_user=cloudgenius ansible_ssh_private_key_file=/Volumes/500/btsync/gitrepos/setup_workstation/certs/nilesh
+[vagrantboxes:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=/Users/arramos84/vagrantvms/boxcutter/.vagrant/machines/default/virtualbox/private_key
