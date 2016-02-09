@@ -1,0 +1,37 @@
+---
+
+- name: install paas management/creation tools
+  hosts: all
+  become_user: cloudgenius
+
+  vars:
+    terra_version: 0.6.11
+    terra_arch: linux_amd64
+
+  tasks:
+    - name: download terraform
+      command: mkdir -p terra
+        args:
+          chdir: {{home}}
+          creates: {{home}}/terra
+      get_url:
+        url: https://releases.hashicorp.com/terraform/{{terra_version}}/terraform_{{terra_version}}_{{terra_arch}}.zip
+        dest: {{home}}
+
+    - name: unpack terraform
+      unarchive:
+        src: {{home}}/terra/terraform_{{terra_version}}_{{terra_arch}}.zip
+        dest: {{home}}/terra
+
+      command: rm terraform_{{terra_version}}_{{terra_arch}}.zip
+        args:
+          chdir: {{home}}/terra
+          removes: {{home }}/terra/terraform_{{terra_version}}_{{terra_arch}}.zip
+
+    - name: install deis
+      git:
+        repo: https://github.com/deis/deis.git
+        dest: {{home}}
+
+      lineinfile:
+        dest: {{home}}/.bashrc" line="export PATH={{home}}/terra:$PATH"
