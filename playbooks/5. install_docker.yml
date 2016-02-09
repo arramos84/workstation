@@ -2,7 +2,7 @@
 
 - name: angstwad.docker_ubuntu
   hosts: all
-  sudo: yes
+  become: yes
   roles:
     - role: angstwad.docker_ubuntu
       kernel_pkg_state: present

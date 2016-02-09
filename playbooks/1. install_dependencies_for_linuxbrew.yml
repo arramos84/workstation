@@ -2,8 +2,8 @@
 
 - name: install dependencies for linuxbrew
   hosts: all
-  sudo: yes
-  
+  become: yes
+
   tasks:
     - name: install dependencies for linuxbrew
       apt: name={{ item }} update_cache=yes state=latest
