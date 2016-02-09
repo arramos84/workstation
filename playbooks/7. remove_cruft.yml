@@ -1,0 +1,16 @@
+---
+
+- name: remove libreoffice
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: remove libreoffice
+      apt: name={{ item }} state=absent purge=yes
+      with_items:
+        - libreoffice-common
+        - libreoffice
+        - unity-webapps-common
+        - unity-lens-shopping
+        - unity-scope-musicstores
+        - unity-scope-video-remote

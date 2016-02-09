@@ -1,0 +1,24 @@
+---
+
+- name: autologin cloudgenius
+  hosts: all
+  sudo: yes
+  roles:
+    - yaegashi.blockinfile
+
+  tasks:
+    - lineinfile: dest=/etc/gdm/custom.conf regexp="^AutomaticLoginEnable=vagrant" state=absent
+    - lineinfile: dest=/etc/gdm/custom.conf line="AutomaticLoginEnable=cloudgenius"
+    - lineinfile: dest=/etc/lightdm/lightdm.conf regexp="^autologin-user=vagrant" state=absent
+    - lineinfile: dest=/etc/lightdm/lightdm.conf line="autologin-user=cloudgenius"
+
+    - name: upgrade
+      apt: upgrade=dist update_cache=yes
+
+    - name: Check if packages need to be autoremoved
+      command: apt-get --dry-run autoremove
+      register: check_autoremove
+      changed_when: False
+    - name: Autoremove unused packages
+      command: apt-get -y autoremove
+      when: "'packages will be REMOVED' in check_autoremove.stdout"

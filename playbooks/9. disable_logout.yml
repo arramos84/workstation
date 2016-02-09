@@ -1,0 +1,35 @@
+---
+
+- name: disable autolock
+  become: yes
+  hosts: all
+  gather_facts: False
+
+  tasks:
+    - name: dont timeout
+      become: yes
+      command: gsettings set org.gnome.desktop.session idle-delay 0
+    - name: disable lock
+      become: yes
+      command: gsettings set org.gnome.desktop.screensaver lock-enabled false
+
+    - name: Disable screen save and lock
+      become: yes
+      shell: "dbus-launch --exit-with-session gsettings {{ item }}"
+      with_items:
+        - "set org.gnome.desktop.screensaver idle-activation-enabled false"
+        - "set org.gnome.desktop.screensaver lock-enabled false"
+        - "set org.gnome.desktop.screensaver ubuntu-lock-on-suspend false"
+
+    - name: push the wallpaper
+      become: no
+      copy: src="../files/cloudgenius.png" dest="{{ home }}/cloudgenius.png"
+    - name: set wallpaper
+      become: no
+      command: gsettings set org.gnome.desktop.background picture-uri file:"///home/cloudgenius/cloudgenius.png"
+      #shell: export DISPLAY=":0" && dbus-launch --exit-with-session gsettings set org.gnome.desktop.background picture-uri file:///home/cloudgenius/cloudgenius.png
+
+#    - name: install atom ppa
+#      apt_repository: repo='ppa:webupd8team/atom'
+#    - name: install atom
+#      apt: name=atom state=present update_cache=yes
