@@ -6,7 +6,7 @@
 
 - name: configure cloudgenius user
   hosts: all
-  sudo: yes
+  become: yes
   gather_facts: False
 
   vars:
@@ -25,10 +25,11 @@
         line='cloudgenius ALL=(ALL) NOPASSWD: ALL'
         state=present"
 
-    - name: Add SSH public key to user remote
-      authorized_key:
-        user=cloudgenius
-        key="{{ lookup('file', "../../setup_workstation/certs/nilesh.pub") }}"
+    # Using with_file
+    - name: Set up authorized_keys for the cloudgenius user
+      authorized_key: user=cloudgenius key="{{ item }}"
+      with_file:
+        - public_keys/alex_macbookpro.pub
 
     - name: Disallow root SSH access
       lineinfile:
